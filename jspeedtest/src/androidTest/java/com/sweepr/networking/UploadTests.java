@@ -28,10 +28,10 @@ public class UploadTests {
         final TestAwaiter awaiter = new TestAwaiter();
         final SpeedTestSocket socket = new SpeedTestSocket();
         socket.addSpeedTestListener(awaiter);
-        socket.startFixedUpload("http://speedtest.sweepr.com:8080/speedtest/upload.php",
-                16 * 1024, 20000);
+        socket.startFixedUpload("http://speedtest.k.pl:8080/speedtest/upload.php", // "http://test.tvk.wroc.pl:8080/speedtest/upload.php", //"http://speedtest.sweepr.com:8080/speedtest/upload.php",
+                640 * 1024 * 1024, 20000);
 
-        final boolean completed = awaiter.acquire();
+        final boolean completed = awaiter.acquire(30000);
         assertTrue(completed);
     }
 }

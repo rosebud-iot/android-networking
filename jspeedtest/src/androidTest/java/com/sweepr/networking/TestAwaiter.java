@@ -55,12 +55,16 @@ public final class TestAwaiter implements ISpeedTestListener {
         sem.release();
     }
 
-    public boolean acquire() {
+    public boolean acquire(long timeout) {
         try {
-            return sem.tryAcquire(TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+            return sem.tryAcquire(timeout, TimeUnit.MILLISECONDS);
         }
         catch (InterruptedException ex) {
             return false;
         }
+    }
+
+    public boolean acquire() {
+        return acquire(TIMEOUT_MILLIS);
     }
 }
