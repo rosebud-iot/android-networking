@@ -122,7 +122,7 @@ public class SpeedTestConst {
     /**
      * Chunk to write at each iteration for upload file generation.
      */
-    public static final int UPLOAD_FILE_WRITE_CHUNK = 64000;
+    public static final int UPLOAD_FILE_WRITE_CHUNK = 64 * 1024;
 
     /**
      * Temporary file name for upload file.

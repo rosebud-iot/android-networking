@@ -120,8 +120,9 @@ public class SpeedTestUtils {
         byte[] data;
 
         if (storageType == UploadStorageType.RAM_STORAGE) {
-            data = Arrays.copyOfRange(body, uploadTempFileSize,
-                    uploadTempFileSize + chunkSize);
+            data = body.length > chunkSize
+                    ? Arrays.copyOfRange(body, uploadTempFileSize, uploadTempFileSize + chunkSize)
+                    : body;
         } else {
             data = new byte[chunkSize];
             uploadFile.seek(uploadTempFileSize);
