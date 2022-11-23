@@ -383,10 +383,11 @@ public class SpeedTestTask {
                         try {
 
                             byte[] body = new byte[]{};
+                            final int uploadChunkSize = mSocketInterface.getUploadChunkSize();
 
                             if (mSocketInterface.getUploadStorageType() == UploadStorageType.RAM_STORAGE) {
                                 /* generate a file with size of fileSizeOctet octet */
-                                body = randomGen.generateRandomArray(SpeedTestConst.UPLOAD_FILE_WRITE_CHUNK);
+                                body = randomGen.generateRandomArray(uploadChunkSize < 8 * 1024 ? SpeedTestConst.UPLOAD_FILE_WRITE_CHUNK : uploadChunkSize);
                             } else {
                                 uploadFile = randomGen.generateRandomFile(fileSizeOctet);
                                 uploadFile.seek(0);
@@ -404,8 +405,6 @@ public class SpeedTestTask {
                             }
                             mUploadTempFileSize = 0;
                             mUlComputationTempFileSize = 0;
-
-                            final int uploadChunkSize = mSocketInterface.getUploadChunkSize();
 
                             final int step = fileSizeOctet / uploadChunkSize;
                             final int remain = fileSizeOctet % uploadChunkSize;
