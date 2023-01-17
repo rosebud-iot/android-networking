@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 33
-    buildToolsVersion "33.0.0"
+    buildToolsVersion "33.0.1"
 
     namespace "com.sweepr.networking"
     testNamespace "com.sweepr.networking"
